@@ -65,7 +65,7 @@ const produtos = [
     {
         id: 8,
         nome: "Guaraná Antarctica 350mL",
-        descricao: "Guaraná Antarctica 350.",
+        descricao: "Guaraná Antarctica 350ml.",
         preco: 8.00,
         imagem: "assets/logo.webp"
     }
