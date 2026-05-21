@@ -1,66 +1,72 @@
-// Cardápio oficial da La Veneza Pizzaria Forno a Lenha
 const produtos = [
     {
         id: 1,
         nome: "Pizza Doce de Leite com Paçoca",
-        descricao: "Deliciosa combinação de doce de leite cremoso com farofa crocante de paçoca.",
+        descricao: "Doce de leite cremoso com paçoca crocante especial da casa.",
         preco: 45.00,
-        imagem: "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=500"
+        imagem: "./assets/pizzadocedeleite.webp"
     },
+
     {
         id: 2,
         nome: "Frango com Catupiry",
-        descricao: "Frango desfiado temperado artesanalmente com o legítimo Catupiry original.",
+        descricao: "Frango artesanal com Catupiry original e muito recheio.",
         preco: 59.00,
-        imagem: "https://images.unsplash.com/photo-1601924582970-9238bcb495d9?q=80&w=500"
+        imagem: "./assets/frangocomcatupi.webp"
     },
+
     {
         id: 3,
         nome: "Mussarela com Calabresa",
-        descricao: "Mussarela premium, calabresa fatiada e cebola fresca ao forno a lenha.",
+        descricao: "Mussarela premium, calabresa especial e azeitonas.",
         preco: 39.00,
-        imagem: "https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=80&w=500"
+        imagem: "./assets/mussarelacomcalabresa.webp"
     },
+
     {
         id: 4,
         nome: "Marguerita",
-        descricao: "Molho artesanal, mussarela especial, tomate fresco, manjericão e azeite.",
+        descricao: "Tomate, manjericão fresco e queijo especial.",
         preco: 42.00,
-        imagem: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?q=80&w=500"
+        imagem: "./assets/calabresacomcatupiri.webp"
     },
+
     {
         id: 5,
         nome: "Quatro Queijos",
-        descricao: "Mussarela, parmesão, provolone e gorgonzola derretidos no forno a lenha.",
+        descricao: "Mistura perfeita de quatro queijos ao forno a lenha.",
         preco: 49.00,
-        imagem: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=500"
+        imagem: "./assets/calabresacomcatupiri.webp"
     },
+
     {
         id: 6,
         nome: "Portuguesa",
-        descricao: "Presunto, ovos, cebola, ervilha, mussarela e azeitonas selecionadas.",
+        descricao: "Presunto, ovos, cebola, ervilha e azeitonas.",
         preco: 38.00,
-        imagem: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=500"
+        imagem: "./assets/frangocomcatupi.webp"
     },
+
     {
         id: 7,
         nome: "Coca-Cola 2L",
-        descricao: "Refrigerante Coca-Cola 2 litros bem gelada.",
+        descricao: "Coca-Cola 2 litros bem gelada.",
         preco: 15.00,
-        imagem: "https://images.unsplash.com/photo-1554866585-cd94860890b7?q=80&w=500"
+        imagem: "./assets/logo.webp"
     },
+
     {
         id: 8,
         nome: "Guaraná Antarctica 2L",
         descricao: "Guaraná Antarctica 2 litros trincando de gelado.",
         preco: 12.00,
-        imagem: "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?q=80&w=500"
+        imagem: "./assets/logo.webp"
     }
 ];
 
 let carrinho = [];
 
-// Seleção de elementos do DOM
+// ELEMENTOS
 const cardapioContainer = document.getElementById("cardapio");
 const modalCarrinho = document.getElementById("modal-carrinho");
 const btnVerCarrinho = document.getElementById("btn-ver-carrinho");
@@ -73,250 +79,307 @@ const inputEndereco = document.getElementById("input-endereco");
 const avisoEndereco = document.getElementById("aviso-endereco");
 const btnFinalizarPedido = document.getElementById("btn-finalizar-pedido");
 
-// Renderizar Cardápio
+// RENDERIZAR CARDÁPIO
 function renderizarCardapio() {
+
     cardapioContainer.innerHTML = "";
 
     produtos.forEach(produto => {
+
         const div = document.createElement("div");
 
         div.className =
-            "bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all border border-orange-100 flex flex-col";
+            "bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-orange-100 flex flex-col";
 
         div.innerHTML = `
-            <img src="${produto.imagem}" alt="${produto.nome}" class="w-full h-52 object-cover">
+            <img
+                src="${produto.imagem}"
+                alt="${produto.nome}"
+                class="w-full h-56 object-cover"
+            >
 
-            <div class="p-4 flex flex-col flex-1 justify-between">
-                
-                <div>
-                    <h3 class="font-bold text-lg text-gray-900 mb-2">
-                        ${produto.nome}
-                    </h3>
+            <div class="p-5 flex flex-col flex-1">
 
-                    <p class="text-gray-500 text-sm leading-relaxed mb-4">
-                        ${produto.descricao}
-                    </p>
-                </div>
+                <h3 class="font-extrabold text-xl text-gray-900">
+                    ${produto.nome}
+                </h3>
 
-                <div class="flex items-center justify-between mt-auto">
-                    <span class="font-extrabold text-2xl text-orange-600">
+                <p class="text-gray-500 text-sm mt-2 flex-1">
+                    ${produto.descricao}
+                </p>
+
+                <div class="flex items-center justify-between mt-5">
+
+                    <span class="text-2xl font-extrabold text-orange-600">
                         R$ ${produto.preco.toFixed(2).replace(".", ",")}
                     </span>
 
-                    <button 
-                        class="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg transition-all active:scale-95 btn-add"
+                    <button
+                        class="bg-orange-500 hover:bg-orange-600 text-black font-bold px-4 py-3 rounded-xl shadow-lg btn-add"
                         data-id="${produto.id}"
                     >
-                        <i class="fa-solid fa-cart-plus mr-1"></i>
-                        Adicionar
+                        <i class="fa-solid fa-cart-plus"></i>
                     </button>
+
                 </div>
+
             </div>
         `;
 
         cardapioContainer.appendChild(div);
+
     });
+
 }
 
-// Adicionar ao carrinho
+// ADICIONAR AO CARRINHO
 cardapioContainer.addEventListener("click", (e) => {
+
     const botao = e.target.closest(".btn-add");
 
     if (botao) {
-        const id = parseInt(botao.getAttribute("data-id"));
+
+        const id =
+            parseInt(botao.getAttribute("data-id"));
+
         adicionarAoCarrinho(id);
+
     }
+
 });
 
 function adicionarAoCarrinho(id) {
-    const produto = produtos.find(p => p.id === id);
-    const itemExistente = carrinho.find(item => item.id === id);
+
+    const produto =
+        produtos.find(p => p.id === id);
+
+    const itemExistente =
+        carrinho.find(item => item.id === id);
 
     if (itemExistente) {
-        itemExistente.quantidade += 1;
+
+        itemExistente.quantidade++;
+
     } else {
+
         carrinho.push({
             ...produto,
             quantidade: 1
         });
+
     }
 
     atualizarInterface();
+
 }
 
-// Atualizar totais
+// ATUALIZAR INTERFACE
 function atualizarInterface() {
+
     let total = 0;
     let totalItens = 0;
 
     carrinho.forEach(item => {
+
         total += item.preco * item.quantidade;
         totalItens += item.quantidade;
+
     });
 
-    const totalFormatado =
+    totalBarra.textContent =
         `R$ ${total.toFixed(2).replace(".", ",")}`;
 
-    totalBarra.textContent = totalFormatado;
-    totalModal.textContent = totalFormatado;
-    contadorCarrinho.textContent = totalItens;
+    totalModal.textContent =
+        `R$ ${total.toFixed(2).replace(".", ",")}`;
+
+    contadorCarrinho.textContent =
+        totalItens;
+
 }
 
-// Abrir Modal
+// ABRIR MODAL
 btnVerCarrinho.addEventListener("click", () => {
+
     renderizarCarrinhoModal();
+
     modalCarrinho.classList.remove("hidden");
+
 });
 
-// Fechar Modal
+// FECHAR MODAL
 btnFecharModal.addEventListener("click", () => {
+
     modalCarrinho.classList.add("hidden");
+
 });
 
 modalCarrinho.addEventListener("click", (e) => {
+
     if (e.target === modalCarrinho) {
+
         modalCarrinho.classList.add("hidden");
+
     }
+
 });
 
-// Renderizar Carrinho
+// RENDERIZAR CARRINHO
 function renderizarCarrinhoModal() {
+
     itensCarrinhoContainer.innerHTML = "";
 
     if (carrinho.length === 0) {
+
         itensCarrinhoContainer.innerHTML = `
-            <p class="text-gray-500 text-center py-6">
+            <p class="text-center text-gray-500 py-6">
                 Seu carrinho está vazio.
             </p>
         `;
+
         return;
+
     }
 
     carrinho.forEach(item => {
+
         const div = document.createElement("div");
 
         div.className =
-            "flex justify-between items-center bg-orange-50 p-4 rounded-xl border border-orange-100";
+            "bg-orange-50 rounded-2xl p-4 flex items-center justify-between border border-orange-100";
 
         div.innerHTML = `
-            <div class="flex-1">
-                <h4 class="font-bold text-gray-900 text-sm">
+            <div>
+
+                <h4 class="font-bold text-sm">
                     ${item.nome}
                 </h4>
 
-                <span class="text-xs text-gray-500">
-                    R$ ${item.preco.toFixed(2).replace(".", ",")} un.
+                <span class="text-gray-500 text-xs">
+                    R$ ${item.preco.toFixed(2).replace(".", ",")}
                 </span>
+
             </div>
 
             <div class="flex items-center gap-3">
-                <button 
-                    class="text-red-500 hover:text-red-700 px-2 font-bold btn-diminuir"
+
+                <button
+                    class="text-red-500 font-bold btn-diminuir"
                     data-id="${item.id}"
                 >
                     -
                 </button>
 
-                <span class="font-semibold text-sm bg-white border px-3 py-1 rounded-md">
+                <span class="font-bold">
                     ${item.quantidade}
                 </span>
 
-                <button 
-                    class="text-green-500 hover:text-green-700 px-2 font-bold btn-aumentar"
+                <button
+                    class="text-green-500 font-bold btn-aumentar"
                     data-id="${item.id}"
                 >
                     +
                 </button>
+
             </div>
         `;
 
         itensCarrinhoContainer.appendChild(div);
+
     });
+
 }
 
-// Alterar Quantidade
+// ALTERAR QUANTIDADE
 itensCarrinhoContainer.addEventListener("click", (e) => {
 
     if (e.target.classList.contains("btn-aumentar")) {
 
-        const id = parseInt(e.target.getAttribute("data-id"));
+        const id =
+            parseInt(e.target.getAttribute("data-id"));
 
-        const item = carrinho.find(i => i.id === id);
+        const item =
+            carrinho.find(i => i.id === id);
 
         item.quantidade++;
 
-        atualizarInterface();
-        renderizarCarrinhoModal();
     }
 
     if (e.target.classList.contains("btn-diminuir")) {
 
-        const id = parseInt(e.target.getAttribute("data-id"));
+        const id =
+            parseInt(e.target.getAttribute("data-id"));
 
-        const idx = carrinho.findIndex(i => i.id === id);
+        const idx =
+            carrinho.findIndex(i => i.id === id);
 
         if (carrinho[idx].quantidade > 1) {
+
             carrinho[idx].quantidade--;
+
         } else {
+
             carrinho.splice(idx, 1);
+
         }
 
-        atualizarInterface();
-        renderizarCarrinhoModal();
     }
+
+    atualizarInterface();
+    renderizarCarrinhoModal();
+
 });
 
-// Finalizar Pedido WhatsApp
+// FINALIZAR PEDIDO
 btnFinalizarPedido.addEventListener("click", () => {
 
     if (carrinho.length === 0) {
-        return alert("Seu carrinho está vazio!");
+
+        alert("Seu carrinho está vazio!");
+        return;
+
     }
 
     if (inputEndereco.value.trim() === "") {
 
         avisoEndereco.classList.remove("hidden");
-        inputEndereco.classList.add("border-red-500");
-
         return;
+
     }
 
     avisoEndereco.classList.add("hidden");
-    inputEndereco.classList.remove("border-red-500");
 
-    let msg = `🍕 *LA VENEZA PIZZARIA FORNO A LENHA* 🍕\n`;
-    msg += `\n*--- NOVO PEDIDO ---*\n\n`;
+    let mensagem =
+        `🍕 *LA VENEZA PIZZARIA FORNO A LENHA* 🍕\n\n`;
 
     carrinho.forEach(item => {
 
-        msg += `• *${item.quantidade}x* ${item.nome}`;
-        msg += ` - R$ ${(item.preco * item.quantidade).toFixed(2)}\n`;
+        mensagem +=
+            `• ${item.quantidade}x ${item.nome} - R$ ${(item.preco * item.quantidade).toFixed(2)}\n`;
+
     });
 
-    const total = carrinho.reduce((acc, item) => {
-        return acc + (item.preco * item.quantidade);
-    }, 0);
+    const total =
+        carrinho.reduce((acc, item) => {
+            return acc + item.preco * item.quantidade;
+        }, 0);
 
-    msg += `\n💰 *Total:* R$ ${total.toFixed(2)}`;
+    mensagem +=
+        `\n💰 *Total:* R$ ${total.toFixed(2)}`;
 
-    msg += `\n📍 *Endereço:* ${inputEndereco.value}`;
+    mensagem +=
+        `\n📍 *Endereço:* ${inputEndereco.value}`;
 
-    // Substitua pelo número oficial da pizzaria
-    const telefone = "5511999999999";
+    mensagem +=
+        `\n\n📞 *La Veneza Pizzaria*`;
+
+    const telefone = "551193981081";
 
     const url =
-        `https://api.whatsapp.com/send?phone=${telefone}&text=${encodeURIComponent(msg)}`;
-
-    carrinho = [];
-
-    atualizarInterface();
-
-    inputEndereco.value = "";
-
-    modalCarrinho.classList.add("hidden");
+        `https://api.whatsapp.com/send?phone=${telefone}&text=${encodeURIComponent(mensagem)}`;
 
     window.open(url, "_blank");
+
 });
 
-// Inicialização
+// INICIAR
 renderizarCardapio();
