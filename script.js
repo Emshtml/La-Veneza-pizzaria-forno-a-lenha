@@ -56,17 +56,17 @@ const produtos = [
 
     {
         id: 7,
-        nome: "Coca-Cola 350ml",
+        nome: "Coca-Cola 2L",
         descricao: "Refrigerante Coca-Cola 2 litros bem gelada.",
-        preco: 8.00,
+        preco: 15.00,
         imagem: "assets/logo.webp"
     },
 
     {
         id: 8,
-        nome: "Guaraná Antarctica 350mL",
-        descricao: "Guaraná Antarctica 350ml.",
-        preco: 8.00,
+        nome: "Guaraná Antarctica 2L",
+        descricao: "Guaraná Antarctica 2 litros.",
+        preco: 12.00,
         imagem: "assets/logo.webp"
     }
 
