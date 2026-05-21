@@ -1,42 +1,49 @@
+// ================================
+// LA VENEZA PIZZARIA FORNO A LENHA
+// SCRIPT.JS OFICIAL
+// ================================
+
+// CARDÁPIO
 const produtos = [
+
     {
         id: 1,
         nome: "Pizza Doce de Leite com Paçoca",
-        descricao: "Doce de leite cremoso com paçoca crocante especial da casa.",
+        descricao: "Delicioso doce de leite cremoso com paçoca crocante.",
         preco: 45.00,
-        imagem: "./assets/pizzadocedeleite.webp"
+        imagem: "assets/pizzadocedeleite.webp"
     },
 
     {
         id: 2,
         nome: "Frango com Catupiry",
-        descricao: "Frango artesanal com Catupiry original e muito recheio.",
+        descricao: "Frango artesanal com Catupiry original.",
         preco: 59.00,
-        imagem: "./assets/frangocomcatupi.webp"
+        imagem: "assets/frangocomcatupi.webp"
     },
 
     {
         id: 3,
         nome: "Mussarela com Calabresa",
-        descricao: "Mussarela premium, calabresa especial e azeitonas.",
+        descricao: "Mussarela premium com calabresa especial.",
         preco: 39.00,
-        imagem: "./assets/mussarelacomcalabresa.webp"
+        imagem: "assets/mussarelacomcalabresa.webp"
     },
 
     {
         id: 4,
         nome: "Marguerita",
-        descricao: "Tomate, manjericão fresco e queijo especial.",
+        descricao: "Molho artesanal, tomate e manjericão fresco.",
         preco: 42.00,
-        imagem: "./assets/calabresacomcatupiri.webp"
+        imagem: "assets/calabresacomcatupiri.webp"
     },
 
     {
         id: 5,
         nome: "Quatro Queijos",
-        descricao: "Mistura perfeita de quatro queijos ao forno a lenha.",
+        descricao: "Mistura especial de quatro queijos ao forno a lenha.",
         preco: 49.00,
-        imagem: "./assets/calabresacomcatupiri.webp"
+        imagem: "assets/calabresacomcatupiri.webp"
     },
 
     {
@@ -44,29 +51,30 @@ const produtos = [
         nome: "Portuguesa",
         descricao: "Presunto, ovos, cebola, ervilha e azeitonas.",
         preco: 38.00,
-        imagem: "./assets/frangocomcatupi.webp"
+        imagem: "assets/frangocomcatupi.webp"
     },
 
     {
         id: 7,
         nome: "Coca-Cola 2L",
-        descricao: "Coca-Cola 2 litros bem gelada.",
+        descricao: "Refrigerante Coca-Cola 2 litros bem gelada.",
         preco: 15.00,
-        imagem: "./assets/logo.webp"
+        imagem: "assets/logo.webp"
     },
 
     {
         id: 8,
         nome: "Guaraná Antarctica 2L",
-        descricao: "Guaraná Antarctica 2 litros trincando de gelado.",
+        descricao: "Guaraná Antarctica 2 litros.",
         preco: 12.00,
-        imagem: "./assets/logo.webp"
+        imagem: "assets/logo.webp"
     }
+
 ];
 
 let carrinho = [];
 
-// ELEMENTOS
+// ELEMENTOS DOM
 const cardapioContainer = document.getElementById("cardapio");
 const modalCarrinho = document.getElementById("modal-carrinho");
 const btnVerCarrinho = document.getElementById("btn-ver-carrinho");
@@ -79,7 +87,9 @@ const inputEndereco = document.getElementById("input-endereco");
 const avisoEndereco = document.getElementById("aviso-endereco");
 const btnFinalizarPedido = document.getElementById("btn-finalizar-pedido");
 
+// ================================
 // RENDERIZAR CARDÁPIO
+// ================================
 function renderizarCardapio() {
 
     cardapioContainer.innerHTML = "";
@@ -115,7 +125,7 @@ function renderizarCardapio() {
                     </span>
 
                     <button
-                        class="bg-orange-500 hover:bg-orange-600 text-black font-bold px-4 py-3 rounded-xl shadow-lg btn-add"
+                        class="bg-orange-500 hover:bg-orange-600 text-black font-bold px-4 py-3 rounded-xl shadow-lg transition-all active:scale-95 btn-add"
                         data-id="${produto.id}"
                     >
                         <i class="fa-solid fa-cart-plus"></i>
@@ -132,7 +142,9 @@ function renderizarCardapio() {
 
 }
 
+// ================================
 // ADICIONAR AO CARRINHO
+// ================================
 cardapioContainer.addEventListener("click", (e) => {
 
     const botao = e.target.closest(".btn-add");
@@ -173,7 +185,9 @@ function adicionarAoCarrinho(id) {
 
 }
 
+// ================================
 // ATUALIZAR INTERFACE
+// ================================
 function atualizarInterface() {
 
     let total = 0;
@@ -197,7 +211,9 @@ function atualizarInterface() {
 
 }
 
-// ABRIR MODAL
+// ================================
+// MODAL
+// ================================
 btnVerCarrinho.addEventListener("click", () => {
 
     renderizarCarrinhoModal();
@@ -206,7 +222,6 @@ btnVerCarrinho.addEventListener("click", () => {
 
 });
 
-// FECHAR MODAL
 btnFecharModal.addEventListener("click", () => {
 
     modalCarrinho.classList.add("hidden");
@@ -223,7 +238,9 @@ modalCarrinho.addEventListener("click", (e) => {
 
 });
 
+// ================================
 // RENDERIZAR CARRINHO
+// ================================
 function renderizarCarrinhoModal() {
 
     itensCarrinhoContainer.innerHTML = "";
@@ -289,7 +306,9 @@ function renderizarCarrinhoModal() {
 
 }
 
+// ================================
 // ALTERAR QUANTIDADE
+// ================================
 itensCarrinhoContainer.addEventListener("click", (e) => {
 
     if (e.target.classList.contains("btn-aumentar")) {
@@ -329,7 +348,9 @@ itensCarrinhoContainer.addEventListener("click", (e) => {
 
 });
 
+// ================================
 // FINALIZAR PEDIDO
+// ================================
 btnFinalizarPedido.addEventListener("click", () => {
 
     if (carrinho.length === 0) {
@@ -342,11 +363,14 @@ btnFinalizarPedido.addEventListener("click", () => {
     if (inputEndereco.value.trim() === "") {
 
         avisoEndereco.classList.remove("hidden");
+        inputEndereco.classList.add("border-red-500");
+
         return;
 
     }
 
     avisoEndereco.classList.add("hidden");
+    inputEndereco.classList.remove("border-red-500");
 
     let mensagem =
         `🍕 *LA VENEZA PIZZARIA FORNO A LENHA* 🍕\n\n`;
@@ -370,9 +394,9 @@ btnFinalizarPedido.addEventListener("click", () => {
         `\n📍 *Endereço:* ${inputEndereco.value}`;
 
     mensagem +=
-        `\n\n📞 *La Veneza Pizzaria*`;
+        `\n\n📞 *Pedidos:* (11) 93938-1081`;
 
-    const telefone = "551193981081";
+    const telefone = "5511939381081";
 
     const url =
         `https://api.whatsapp.com/send?phone=${telefone}&text=${encodeURIComponent(mensagem)}`;
@@ -381,5 +405,7 @@ btnFinalizarPedido.addEventListener("click", () => {
 
 });
 
+// ================================
 // INICIAR
+// ================================
 renderizarCardapio();
