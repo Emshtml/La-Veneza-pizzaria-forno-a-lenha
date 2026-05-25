@@ -6,6 +6,7 @@
 // CARDÁPIO
 const produtos = [
 
+ ",
     {
         id: 1,
         nome: "Pizza Doce de Leite com Paçoca",
@@ -63,11 +64,7 @@ const produtos = [
     },
 
     {
-        id: 8,
-        nome: "Guaraná Antarctica 2L",
-        descricao: "Guaraná Antarctica 2 litros.",
-        preco: 12.00,
-        imagem: "assets/logo.webp"
+        
     }
 
 ];
